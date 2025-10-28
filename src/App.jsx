@@ -14,7 +14,7 @@ const App = () => {
     <div className="max-w-[1440px] mx-auto min-h-screen flex flex-col">
       <Router>
         <Routes>
-          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
