@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -6,7 +6,7 @@ const Header = () => {
       <h1 className="text-2xl font-bold text-blue-600">🎟️ Ticket Manager</h1>
 
       <nav className="space-x-4">
-        <NavLink
+        <Link
           to={"/homepage"}
           className={({ isActive }) =>
             `px-3 py-2 rounded ${
@@ -17,8 +17,8 @@ const Header = () => {
           }
         >
           Homepage
-        </NavLink>
-        <NavLink 
+        </Link>
+        <Link
           to="/dashboard"
           className={({ isActive }) =>
             `px-3 py-2 rounded ${
@@ -29,8 +29,8 @@ const Header = () => {
           }
         >
           Dashboard
-        </NavLink>
-        <NavLink
+        </Link>
+        <Link
           to="/tickets"
           className={({ isActive }) =>
             `px-3 py-2 rounded ${
@@ -41,7 +41,7 @@ const Header = () => {
           }
         >
           Tickets
-        </NavLink>
+        </Link>
       </nav>
     </header>
   );
