@@ -12,11 +12,11 @@ const Dashboard = () => {
   }, []);
 
   const totalTickets = tickets.length;
-  const openTickets = tickets.filter((t) => t.status === "open").length;
+  const openTickets = tickets.filter((t) => t.status === "Open").length;
   const inProgressTickets = tickets.filter(
-    (t) => t.status === "in-progress"
+    (t) => t.status === "In Progress"
   ).length;
-  const resolvedTickets = tickets.filter((t) => t.status === "resolved").length;
+  const resolvedTickets = tickets.filter((t) => t.status === "Resolved").length;
 
   const recentTickets = [...tickets].reverse().slice(0, 5);
 
@@ -72,9 +72,9 @@ const Dashboard = () => {
                   </div>
                   <span
                     className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      ticket.status === "open"
+                      ticket.status === "Open"
                         ? "bg-yellow-100 text-yellow-800"
-                        : ticket.status === "in-progress"
+                        : ticket.status === "In Progress"
                         ? "bg-purple-100 text-purple-800"
                         : "bg-green-100 text-green-800"
                     }`}
