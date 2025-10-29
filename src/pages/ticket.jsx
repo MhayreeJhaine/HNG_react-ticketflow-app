@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
 const Tickets = () => {
   const [tickets, setTickets] = useState([]);
@@ -63,11 +64,36 @@ const Tickets = () => {
   };
 
   const handleDelete = (id) => {
-    if (confirm("Are you sure you want to delete this ticket?")) {
-      const filtered = tickets.filter((t) => t.id !== id);
-      saveTickets(filtered);
-      toast.success("Ticket deleted");
-    }
+    // Show a custom toast confirmation
+    toast.custom((t) => (
+      <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200 flex flex-col items-center space-y-3">
+        <p className="text-gray-800 font-medium">
+          Are you sure you want to delete this ticket?
+        </p>
+        <div className="flex space-x-3">
+          <button
+            onClick={() => {
+              // Close toast without deleting
+              toast.dismiss(t.id);
+            }}
+            className="px-3 py-1 text-sm bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              const filtered = tickets.filter((ticket) => ticket.id !== id);
+              saveTickets(filtered);
+              toast.dismiss(t.id); // Close confirmation toast
+              toast.success("Ticket deleted"); // Show success message
+            }}
+            className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    ));
   };
 
   return (
@@ -104,7 +130,7 @@ const Tickets = () => {
           >
             <option value="Open">Open</option>
             <option value="In Progress">In Progress</option>
-            <option value="Resolved">Resolved</option>
+            <option value="Closed">Closed</option>
           </select>
 
           <button
@@ -130,7 +156,7 @@ const Tickets = () => {
 
                 <span
                   className={`inline-block mt-2 px-3 py-1 rounded-full text-sm font-medium ${
-                    ticket.status === "Resolved"
+                    ticket.status === "Closed"
                       ? "bg-green-100 text-green-700"
                       : ticket.status === "In Progress"
                       ? "bg-purple-100 text-purple-700"
@@ -163,6 +189,7 @@ const Tickets = () => {
           </p>
         )}
       </main>
+      <Footer />
     </div>
   );
 };

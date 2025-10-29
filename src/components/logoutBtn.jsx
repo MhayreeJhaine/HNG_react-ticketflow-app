@@ -1,13 +1,13 @@
 const Logout = () => {
   const handleLogout = () => {
     localStorage.removeItem("ticketapp_session");
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   return (
     <button
       onClick={handleLogout}
-      className="bg-red-500 text-white px-5 py-2 my-8 rounded hover:bg-red-600 cursor-pointer"
+      className="bg-tranparent text-red-500 border-2 border-red-500 px-5 py-1 rounded-3xl hover:bg-red-500 hover:text-white cursor-pointer transition duration-400 ease-in-out"
     >
       Logout
     </button>

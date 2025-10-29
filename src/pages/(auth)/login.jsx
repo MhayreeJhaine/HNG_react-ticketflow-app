@@ -3,12 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import toast from "react-hot-toast";
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -27,6 +26,7 @@ const Login = () => {
     }
 
     localStorage.setItem("ticketapp_session", email);
+    setIsAuthenticated(true); // ✅ Update the state immediately
     toast.success("Login successful! Redirecting to dashboard...");
 
     setTimeout(() => navigate("/dashboard"), 1500);
@@ -42,7 +42,6 @@ const Login = () => {
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
         <form onSubmit={handleLogin} className="space-y-4">
-          {/* email */}
           <input
             type="email"
             placeholder="Email"
@@ -52,7 +51,6 @@ const Login = () => {
             required
           />
 
-          {/* Password */}
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
